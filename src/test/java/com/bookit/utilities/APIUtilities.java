@@ -21,6 +21,7 @@ public class APIUtilities {
     /**
      * This method is used to retrieve token from the server.
      * Token bust be attached to the header of every API call
+     *
      * @return token
      */
     public static String getToken() {
@@ -38,18 +39,20 @@ public class APIUtilities {
     /**
      * This method is used to retrieve authorization token from the server for specific role.
      * Token bust be attached to the header of every API call
+     *
      * @return token
      */
     public static String getToken(String role) {
         String email = null;
         String password = null;
-        if(role.toLowerCase().contains("teacher")){
+
+        if (role.toLowerCase().contains("teacher")) {
             email = Environment.TEACHER_USERNAME;
             password = Environment.TEACHER_PASSWORD;
-        }else if (role.toLowerCase().contains("lead")){
+        } else if (role.toLowerCase().contains("lead")) {
             email = Environment.LEADER_USERNAME;
             password = Environment.LEADER_PASSWORD;
-        }else {
+        } else {
             email = Environment.MEMBER_USERNAME;
             password = Environment.MEMBER_PASSWORD;
         }
