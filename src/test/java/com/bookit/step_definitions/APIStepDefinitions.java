@@ -50,8 +50,8 @@ public class APIStepDefinitions {
     }
 
     @Then("user verifies that response status code is {int}")
-    public void user_verifies_that_response_status_code_is(Integer int1) {
-
+    public void user_verifies_that_response_status_code_is(int expectedStatusCode) {
+        Assert.assertEquals(expectedStatusCode, response.getStatusCode());
     }
 
     @Then("user should be able to see all room names")
