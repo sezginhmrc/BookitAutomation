@@ -51,7 +51,7 @@ public class BrowserUtilities {
     public static void waitForPageToLoad(long timeOutInSeconds) {
         ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
         try {
-            WebDriverWait wait = new WebDriverWait(com.vytrack.utilities.Driver.getDriver(), timeOutInSeconds);
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOutInSeconds);
             wait.until(expectation);
         } catch (Throwable error) {
             error.printStackTrace();
@@ -64,8 +64,8 @@ public class BrowserUtilities {
      * @param element
      */
     public static void clickWithJS(WebElement element) {
-        ((JavascriptExecutor) com.vytrack.utilities.Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-        ((JavascriptExecutor) com.vytrack.utilities.Driver.getDriver()).executeScript("arguments[0].click();", element);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
 
     /**
@@ -74,7 +74,7 @@ public class BrowserUtilities {
      * @param element
      */
     public static void scrollTo(WebElement element) {
-        ((JavascriptExecutor) com.vytrack.utilities.Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     /**
@@ -98,7 +98,7 @@ public class BrowserUtilities {
         //since our reference type is a WebDriver
         //we cannot see methods from TakesScreenshot interface
         //that's why do casting
-        TakesScreenshot takesScreenshot = (TakesScreenshot) com.vytrack.utilities.Driver.getDriver();
+        TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
         //take screenshot of web browser, and save it as a file
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
         //where screenshot will be saved
@@ -118,10 +118,10 @@ public class BrowserUtilities {
      * @param title of the window to switch
      */
     public static void scitchWindow(String title){
-        Set<String> windowHandles = com.vytrack.utilities.Driver.getDriver().getWindowHandles();
+        Set<String> windowHandles = Driver.getDriver().getWindowHandles();
         for(String window : windowHandles){
-            com.vytrack.utilities.Driver.getDriver().switchTo().window(window);
-            if(com.vytrack.utilities.Driver.getDriver().getTitle().equals(title)){
+            Driver.getDriver().switchTo().window(window);
+            if(Driver.getDriver().getTitle().equals(title)){
                 break;
             }
         }
