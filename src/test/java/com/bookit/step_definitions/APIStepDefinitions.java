@@ -81,8 +81,18 @@ public class APIStepDefinitions {
         }
     }
 
+    /**
+     *  Then user deletes previously added students
+     *       | first-name | last-name | email               | password | role                | campus-location | batch-number | team-name      |
+     *       | Lesly      | SDET      | lesly2020@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
+     *
+     */
     @Then("user deletes previously added students")
     public void user_deletes_previously_added_students(List<Map<String, String>> dataTable) {
-
+        for (Map<String, String> row: dataTable){
+            int userID = APIUtilities.getUserID(row.get("email"), row.get("password"));
+            response = APIUtilities.deleteUserByID(userID);
+            response.then().statusCode(204);
+        }
     }
 }

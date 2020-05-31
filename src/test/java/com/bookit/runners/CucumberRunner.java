@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json"
         },
         tags = "@create_student_2",
-        dryRun = true
+        dryRun = false
 
 )
 public class CucumberRunner {
