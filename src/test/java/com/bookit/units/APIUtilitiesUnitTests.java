@@ -21,4 +21,10 @@ public class APIUtilitiesUnitTests {
         Assert.assertNotNull(tokenForStudent);
         Assert.assertNotNull(tokenForTeacher);
     }
+
+    @Test
+    public void testIfUserExists(){
+        int actual = APIUtilities.getUserID("thereisnoemaillikethis@email.com", "123123");
+        Assert.assertEquals(-1, actual);
+    }
 }

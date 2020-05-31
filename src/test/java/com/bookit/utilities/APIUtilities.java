@@ -100,14 +100,20 @@ public class APIUtilities {
      *
      * @param email
      * @param password
-     * @return user id
+     * @return user id, return -1 if user doesn't exist
      */
     public static int getUserID(String email, String password) {
-        String token = getToken(email, password);
-        Response response = given().auth().oauth2(token).when().get(Endpoints.GET_ME);
-        response.then().log().ifError();//print response details in case of error
-        response.then().statusCode(200);//ensure that it returns 200 status code
-        return response.jsonPath().getInt("id");
+        try {
+            String token = getToken(email, password);
+            Response response = given().auth().oauth2(token).when().get(Endpoints.GET_ME);
+            response.then().log().ifError();//print response details in case of error
+            response.then().statusCode(200);//ensure that it returns 200 status code
+            return response.jsonPath().getInt("id");
+        }catch (Exception e){
+            System.out.println("USER DOESN'T EXISTS!");
+            System.out.println(e.getMessage());
+        }
+        return -1;
     }
 
     /**
@@ -159,4 +165,8 @@ public class APIUtilities {
         response.then().log().ifError();
         return response;
     }
+
+//    public static void ensureUserDoesntExist(String email, String password){
+//        Response response = getUserID(e)
+//    }
 }
