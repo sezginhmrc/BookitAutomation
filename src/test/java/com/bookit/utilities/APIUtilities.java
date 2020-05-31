@@ -71,7 +71,8 @@ public class APIUtilities {
     /**
      * This method is used to retrieve token from the server.
      * Token bust be attached to the header of every API call
-     * @param email - email of the user
+     *
+     * @param email    - email of the user
      * @param password - password the user
      * @return token
      */
@@ -90,18 +91,19 @@ public class APIUtilities {
     /**
      * This method returns id of logged in user
      * {
-     *     "id": integer,
-     *     "firstName": "string",
-     *     "lastName": "string",
-     *     "role": "string"
+     * "id": integer,
+     * "firstName": "string",
+     * "lastName": "string",
+     * "role": "string"
      * }
      * User credentials
+     *
      * @param email
      * @param password
      * @return user id
      */
-    public static int getUserID(String email, String password){
-        String token = getToken(email,password);
+    public static int getUserID(String email, String password) {
+        String token = getToken(email, password);
         Response response = given().auth().oauth2(token).when().get(Endpoints.GET_ME);
         response.then().log().ifError();//print response details in case of error
         response.then().statusCode(200);//ensure that it returns 200 status code
@@ -110,13 +112,15 @@ public class APIUtilities {
 
     /**
      * This method deletes user based on id
+     *
      * @param id of the user to delete
      * @return response object
      */
-    public static Response deleteUserByID(int id){
-       String token = getToken("teacher");
-       Response response = given().auth().oauth2(token).when().delete(Endpoints.DELETE_STUDENT, id);
-       response.then().log().ifError();
-       return response;
+    public static Response deleteUserByID(int id) {
+        String token = getToken("teacher");
+        Response response = given().auth().oauth2(token).when().delete(Endpoints.DELETE_STUDENT, id);
+        response.then().log().ifError();
+        System.out.printf("User with id %s was deleted!", id);
+        return response;
     }
 }
