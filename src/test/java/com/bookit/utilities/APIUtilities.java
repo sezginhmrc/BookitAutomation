@@ -67,4 +67,56 @@ public class APIUtilities {
         System.out.println("TOKEN :: " + token);
         return token;
     }
+
+    /**
+     * This method is used to retrieve token from the server.
+     * Token bust be attached to the header of every API call
+     * @param email - email of the user
+     * @param password - password the user
+     * @return token
+     */
+    public static String getToken(String email, String password) {
+        Response response = given().
+                queryParam("email", email).
+                queryParam("password", password).
+                when().
+                get("/sign");
+        response.then().log().ifError();//if request failed, print response information
+        String token = response.jsonPath().getString("accessToken");
+        System.out.println("TOKEN :: " + token);
+        return token;
+    }
+
+    /**
+     * This method returns id of logged in user
+     * {
+     *     "id": integer,
+     *     "firstName": "string",
+     *     "lastName": "string",
+     *     "role": "string"
+     * }
+     * User credentials
+     * @param email
+     * @param password
+     * @return user id
+     */
+    public static int getUserID(String email, String password){
+        String token = getToken(email,password);
+        Response response = given().auth().oauth2(token).when().get(Endpoints.GET_ME);
+        response.then().log().ifError();//print response details in case of error
+        response.then().statusCode(200);//ensure that it returns 200 status code
+        return response.jsonPath().getInt("id");
+    }
+
+    /**
+     * This method deletes user based on id
+     * @param id of the user to delete
+     * @return response object
+     */
+    public static Response deleteUserByID(int id){
+       String token = getToken("teacher");
+       Response response = given().auth().oauth2(token).when().delete(Endpoints.DELETE_STUDENT, id);
+       response.then().log().ifError();
+       return response;
+    }
 }
