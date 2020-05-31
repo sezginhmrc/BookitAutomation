@@ -6,6 +6,8 @@ Feature: Rooms
     And user accepts content type as "application/json"
     When user sends GET request to "/api/rooms"
     Then user should be able to see 18 rooms
+    # response is can be list of objects
+    # it can be map.
     And user verifies that response status code is 200
 
   @print_room_names
