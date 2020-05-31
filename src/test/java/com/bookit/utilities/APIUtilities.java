@@ -123,4 +123,40 @@ public class APIUtilities {
         System.out.printf("User with id %s was deleted!", id);
         return response;
     }
+
+    /**
+     * Use this method to add new batch to the system
+     * @param batchNumber to add
+     * @return response object
+     */
+    public static Response addBatch(int batchNumber) {
+        String token = getToken("teacher");
+
+        Response response = given().
+                auth().oauth2(token).
+                queryParam("batch-number", batchNumber).
+                post(Endpoints.ADD_BATCH);
+        response.then().log().ifError();
+        return response;
+    }
+
+    /**
+     * Use this method to add new team
+     * @param teamName must be unique within specific batch number
+     * @param location VA or IL
+     * @param batchNumber any number that already exist
+     * @return response object
+     */
+    public static Response addTeam(String teamName, String location, int batchNumber){
+        String token = getToken("teacher");
+        Response response = given().
+                                    auth().oauth2(token).
+                                    queryParam("team-name", teamName).
+                                    queryParam("campus-location", location).
+                                    queryParam("batch-number", batchNumber).
+                            when().
+                                post(Endpoints.ADD_TEAM);
+        response.then().log().ifError();
+        return response;
+    }
 }

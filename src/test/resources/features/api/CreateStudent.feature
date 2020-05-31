@@ -15,12 +15,12 @@ Feature: Create student
     Given authorization token is provided for "teacher"
     And user accepts content type as "application/json"
     When user sends POST request to "/api/students/student" with following information:
-      | first-name | last-name | email                    | password | role                | campus-location | batch-number | team-name      |
-      | Lesly      | SDET      | lessleefromb15@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
+      | first-name | last-name | email                          | password | role                | campus-location | batch-number | team-name      |
+      | Lesly      | SDET      | lessleefromb15online@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
     And user verifies that response status code is 201
     Then user deletes previously added students
-      | first-name | last-name | email                    | password | role                | campus-location | batch-number | team-name      |
-      | Lesly      | SDET      | lessleefromb15@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
+      | first-name | last-name | email                          | password | role                | campus-location | batch-number | team-name      |
+      | Lesly      | SDET      | lessleefromb15online@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
 
 #    we can add only one student
 #  so to resolve this issue, we can delete added student at the end of the test
