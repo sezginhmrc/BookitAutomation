@@ -5,6 +5,18 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Environment {
+
+    // THis is class have constants (properties) that we need in application values will be getting properties
+    // based on environment it will take values and defined the values.
+    // We have different envs -> dev,qa,stagin,
+    // for every envs we create properties file under resources
+    // properties will be loaded based on env name on configration.properties
+    // same keys but different values for environmnets.
+    // lets say if env is qa1 it will load the values from there
+    // that execution happens here.
+    // all environments are same but different content.
+    // for exampe Url is url in every envoirmnet but value is different.
+    // and all values will be provided when this class being called.
     public static final String URL;
     public static final String DB_USERNAME;
     public static final String DB_PASSWORD;

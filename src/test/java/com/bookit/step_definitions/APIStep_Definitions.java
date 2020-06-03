@@ -21,6 +21,8 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class APIStep_Definitions {
+    // Rest-Assured SHARED VALUES IN STEP DEFINIITIONS.
+    //
     private RequestSpecification requestSpecification;
     private Response response;
     private String token ;
@@ -29,7 +31,7 @@ public class APIStep_Definitions {
 
     @Given("authorization token is provided for {string}")
     public void authorization_token_is_provided_for(String role) {
-        token = APIUtilities.getToken(role);
+        token = APIUtilities.getToken(role);// this method returns token based on role role comes from scanerio
     }
 
     @Given("user accepts content type as {string}")
@@ -51,7 +53,7 @@ public class APIStep_Definitions {
 
     @Then("user should be able to see {int} rooms")
     public void user_should_be_able_to_see_rooms(int expectedNumberOfRuums) {
-        List<?> rooms = response.jsonPath().get();
+        List<?> rooms = response.jsonPath().get(); // to get rooms size from payload
         Assert.assertEquals(expectedNumberOfRuums,rooms.size());
     }
 
@@ -63,8 +65,10 @@ public class APIStep_Definitions {
     @Then("user should be able to see all room names")
     public void userShouldBeAbleToSeeAllRoomNames() {
         List<Room> rooms = response.jsonPath().getList("",Room.class);
+        // we convert response into our java object(pojo -> room )
         for(Room room :rooms){
             System.out.println(room.getName());
+            // to get all room names
         }
     }
 
@@ -78,19 +82,30 @@ public class APIStep_Definitions {
     }
 
     @When("user sends POST request to {string} with following information:")
-    public void user_sends_POST_request_to_with_following_information(String path, List<Map<String,?>> dataTable) {
-            for(Map<String, ?> user : dataTable){
-                // for multiple students
-                response = given().queryParams(user).contentType(ContentType.JSON).
+    public void user_sends_POST_request_to_with_following_information(String path, List<Map<String,String>> dataTable) {
+            for(Map<String, String> user : dataTable){
+                System.out.println("User to be added:: "+user);
+                APIUtilities.ensureUserDoesntExist(user.get("email"),user.get("password"));
+                response = given().queryParams(user).
+                        contentType(ContentType.JSON).
                            auth().oauth2(token).
                             when().post(path).prettyPeek();
 
             }
     }
+
     @Then("user deletes previously added students")
-    public void user_deletes_previously_added_students(List<Map<?,?>> dataTable) {
-        // we cannot delete studenst based on email
-        // we can delete based on id.
-        response = get("/api/students/100").prettyPeek();
+    public void user_deletes_previously_added_students(List<Map<String, String>> dataTable) {
+        for (Map<String, String> row: dataTable){
+            // we get id to delete student but we dont have id in dataTable in scenario ?
+            // in this api of Bookit we can only intearacth with user based on ID..
+            int userID = APIUtilities.getUserID(row.get("email"), row.get("password"));
+            // we used getUserId method which returns id based on email andd password
+            // storied id as int
+            response = APIUtilities.deleteUserByID(userID);
+            // here we deleted user by Id using related method from api utilities.
+            response.then().statusCode(204);
+        }
     }
+
 }

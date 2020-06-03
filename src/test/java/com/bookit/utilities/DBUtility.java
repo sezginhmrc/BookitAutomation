@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public class DBUtility {
+
+    //  this class is basically for CRUD operations on DataBase
+
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
