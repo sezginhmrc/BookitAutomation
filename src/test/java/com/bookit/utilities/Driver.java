@@ -10,12 +10,16 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Driver {
 
     //same for everyone
     private static final ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+    public static final String USERNAME = "sezginhamurcu1";
+    public static final String AUTOMATE_KEY = "BGvT5kCxtSsJp3szsWzK";
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     //so no one can create object of Driver class
     //everyone should call static getter method instead
@@ -92,6 +96,21 @@ public class Driver {
                         desiredCapabilities.setPlatform(Platform.ANY);
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                     } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "browser-stack-chrome":
+                    DesiredCapabilities caps = new DesiredCapabilities();
+
+                    caps.setCapability("os", "Windows");
+                    caps.setCapability("os_version", "10");
+                    caps.setCapability("browser", "Chrome");
+                    caps.setCapability("browser_version", "80");
+                    caps.setCapability("name", "sezginhamurcu1's First Test");
+
+                    try {
+                        driverPool.set(new RemoteWebDriver(new URL(URL), caps));
+                    } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
                     break;
