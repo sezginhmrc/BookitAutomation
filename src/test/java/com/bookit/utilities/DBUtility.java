@@ -31,7 +31,6 @@ public class DBUtility {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
     public static void destroy() {

@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
+
 public class SelfPage extends BasePage {
 
     /**
@@ -19,4 +21,6 @@ public class SelfPage extends BasePage {
         WebElement valueElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return valueElement.getText().trim();
     }
+
+
 }
