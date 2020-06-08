@@ -17,6 +17,7 @@ public class Driver {
 
     //same for everyone
     private static final ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+
     public static final String USERNAME = "sezginhamurcu1";
     public static final String AUTOMATE_KEY = "BGvT5kCxtSsJp3szsWzK";
     public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
@@ -110,6 +111,19 @@ public class Driver {
 
                     try {
                         driverPool.set(new RemoteWebDriver(new URL(URL), caps));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "browser-stack-android":
+                    DesiredCapabilities capsAndroid = new DesiredCapabilities();
+                    capsAndroid.setCapability("browserName", "android");
+                    capsAndroid.setCapability("device", "Samsung Galaxy S20 Ultra");
+                    capsAndroid.setCapability("realMobile", "true");
+                    capsAndroid.setCapability("os_version", "10.0");
+                    capsAndroid.setCapability("name", "BookIT Automation");
+                    try {
+                        driverPool.set(new RemoteWebDriver(new URL(URL), capsAndroid));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
