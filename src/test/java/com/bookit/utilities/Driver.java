@@ -51,6 +51,7 @@ public class Driver {
                 GRID_URL = System.getProperty("grid_url");
             }
 
+
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
