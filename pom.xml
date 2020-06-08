@@ -79,7 +79,7 @@
                 <configuration>
                     <!-- for parallel running Cucumber-->
                     <parallel>methods</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>   <!-- in case of fail stil generates report-->
                     <includes>
                         <!-- for  run class or classes-->
                         <include>**/CucumberRunner*.java</include>

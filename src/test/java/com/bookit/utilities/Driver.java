@@ -21,6 +21,7 @@ public class Driver {
     public static final String USERNAME = "sezginhamurcu1";
     public static final String AUTOMATE_KEY = "BGvT5kCxtSsJp3szsWzK";
     public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+    // basic authentication
 
     //so no one can create object of Driver class
     //everyone should call static getter method instead
@@ -36,7 +37,7 @@ public class Driver {
      * @return
      */
     public synchronized static WebDriver getDriver() {
-        String GRID_URL = "http://34.204.195.171:4444/wd/hub";
+        String GRID_URL = "http://34.204.195.171:4444/wd/hub"; // dokcker based selenium grid from our ec2 server.
         //if webdriver object doesn't exist
         //create it
         if (driverPool.get() == null) {
@@ -116,15 +117,29 @@ public class Driver {
                         e.printStackTrace();
                     }
                     break;
-                case "browser-stack-android":
-                    DesiredCapabilities capsAndroid = new DesiredCapabilities();
-                    capsAndroid.setCapability("browserName", "android");
-                    capsAndroid.setCapability("device", "Samsung Galaxy S20 Ultra");
-                    capsAndroid.setCapability("realMobile", "true");
-                    capsAndroid.setCapability("os_version", "10.0");
-                    capsAndroid.setCapability("name", "BookIT Automation");
+                case "browser-stack-ios":
+                    DesiredCapabilities capsIOS = new DesiredCapabilities();
+                    capsIOS.setCapability("browserName", "iPhone");
+                    capsIOS.setCapability("device", "iPhone 11 Pro Max");
+                    capsIOS.setCapability("realMobile", "true");
+                    capsIOS.setCapability("os_version", "13");
+                    capsIOS.setCapability("name", "Bstack-[Java] Sample Test");
+
                     try {
-                        driverPool.set(new RemoteWebDriver(new URL(URL), capsAndroid));
+                        WebDriver driver = new RemoteWebDriver(new URL(URL), capsIOS);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "browser-stack-android":
+                DesiredCapabilities caps1 = new DesiredCapabilities();
+                caps1.setCapability("browserName", "android");
+                caps1.setCapability("device", "Samsung Galaxy S8");
+                caps1.setCapability("realMobile", "true");
+                caps1.setCapability("os_version", "7.0");
+                caps1.setCapability("name", "sezginhamurcu1's android test");
+                    try {
+                        driverPool.set(  new RemoteWebDriver(new URL(URL), caps1));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
