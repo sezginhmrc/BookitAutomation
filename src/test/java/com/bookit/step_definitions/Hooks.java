@@ -34,14 +34,14 @@ public class Hooks {
      * This hook will be executed only for scenarios that are annotated with @ui tag
      */
 
-    @Before("@ui")
-    public void uiSetUp(){
-        String browser = ConfigurationReader.getProperty("browser").toLowerCase();
-        if (!browser.contains("ios") && !browser.contains("android")){
-            Driver.getDriver().manage().window().maximize();
-        }
+//    @Before("@ui")
+//    public void uiSetUp(){
+//        String browser = ConfigurationReader.getProperty("browser").toLowerCase();
+//        if (!browser.contains("ios") && !browser.contains("android")){
+//            Driver.getDriver().manage().window().maximize();
+//        }
      //   Driver.getDriver().manage().window().maximize(); // this doesnt work for IOS mobiles. we need to configure it.
-    }
+    //}
     @After
     public void tearDownScenario(Scenario scenario) {
         if (scenario.isFailed()) {
