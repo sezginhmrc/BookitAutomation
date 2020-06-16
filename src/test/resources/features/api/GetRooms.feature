@@ -1,4 +1,4 @@
-@api @rooms
+@api @rooms @smoke
 Feature: Rooms
 
   @verify_room_counts

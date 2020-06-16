@@ -1,4 +1,4 @@
-@api @create_student
+@api @create_student @smoke
 Feature: Create student
 
   @create_Basic_student

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         plugin = {
                 "json:target/cucumber.json"
         },
-        tags = "@DB_1",   // which test scenarios to be run
+     //   tags = "@DB_1",   // which test scenarios to be run
         dryRun = false ,  // We use it to ensure that every phase has some implementation, auto-genereated by cucumber.
         strict = false
 
