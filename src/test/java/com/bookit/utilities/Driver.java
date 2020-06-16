@@ -13,6 +13,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+// this class inceraese of my maintabiltiy and reusalbiyo f my framework
 public class Driver {
 
     //same for everyone
@@ -37,7 +39,7 @@ public class Driver {
      * @return
      */
     public synchronized static WebDriver getDriver() {
-        String GRID_URL = "http://34.204.195.171:4444/wd/hub"; // dokcker based selenium grid from our ec2 server.
+        String GRID_URL = "http://34.204.195.171:4444/wd/hub"; //  this is dokcker based selenium grid url of hub from our ec2 server.
         //if webdriver object doesn't exist
         //create it
         if (driverPool.get() == null) {
@@ -60,7 +62,7 @@ public class Driver {
                     chromeOptions.addArguments("--start-maximized");
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
-                case "chromeheadless":
+                 case "chromeheadless":
                     //to run chrome without interface (headless mode)
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();

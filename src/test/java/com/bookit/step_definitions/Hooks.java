@@ -23,7 +23,8 @@ public class Hooks {
     /**
      * This hook will be executed only for scenarios that are annotated with @db tag
      */
-    @After("@db")
+    @After("@db") // this tag includes test from related scenarios
+                 // we labelling our scenarios to connection jdbc and destry connection after executed tests
     public void dbTearDown(){
         DBUtility.destroy();
         // to close connections with database
@@ -41,7 +42,14 @@ public class Hooks {
         }
      //   Driver.getDriver().manage().window().maximize(); // this doesnt work for IOS mobiles. we need to configure it.
     }
-
+    @After
+    public void tearDownScenario(Scenario scenario) {
+        if (scenario.isFailed()) {
+            byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenshot, "image/png", scenario.getName());
+        }
+        Driver.closeDriver();
+    }
     /**
      * This hook will be executed only for scenarios that are annotated with @ui tag
      */

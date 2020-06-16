@@ -10,6 +10,7 @@ import java.util.Map;
 
 /*
  * This is a utility for reading from writing to excel files.
+ * apache poi library enable to retrieve with excel file.
  * it works with xls and xlsx files.
  */
 public class ExcelUtil {
@@ -23,6 +24,7 @@ public class ExcelUtil {
         this.path = path;
         try {
             // Open the Excel file
+            // Java cannot read file by itself we need to creare file path
             FileInputStream ExcelFile = new FileInputStream(path);
             // Access the required test data sheet
             workBook = WorkbookFactory.create(ExcelFile);
@@ -44,7 +46,7 @@ public class ExcelUtil {
         }
     }
 
-    public String[][] getDataArray() {
+    public String[][] getDataArray() { // without firstRow.
 
         String[][] data = new String[rowCount()][columnCount()];
 

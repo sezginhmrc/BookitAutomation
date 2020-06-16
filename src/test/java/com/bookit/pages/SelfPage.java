@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 
-public class SelfPage extends BasePage {
+public class   SelfPage extends BasePage {
 
     /**
      *
@@ -20,7 +20,6 @@ public class SelfPage extends BasePage {
         String xpath = "//p[text()='"+value+"']/preceding-sibling::p";
         WebElement valueElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return valueElement.getText().trim();
+
     }
-
-
 }

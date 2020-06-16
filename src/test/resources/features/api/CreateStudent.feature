@@ -50,5 +50,6 @@ Feature: Create student
       | Heisenberg | SDET      | ImTheMan@email.com | 1111     | student-team-member | VA              | 15           | Online_Hackers |
 
 
-#    we can add only one student
+
+#   we can add only one student
 #  so to resolve this issue, we can delete added student at the end of the test

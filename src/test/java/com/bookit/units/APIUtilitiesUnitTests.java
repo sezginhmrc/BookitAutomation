@@ -1,6 +1,7 @@
 package com.bookit.units;
 
 import com.bookit.utilities.APIUtilities;
+import com.bookit.utilities.DBUtility;
 import com.bookit.utilities.Environment;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,6 +38,9 @@ public class APIUtilitiesUnitTests {
         int actual2 = APIUtilities.getUserID(Environment.MEMBER_USERNAME, Environment.MEMBER_PASSWORD);
         //positive test
         Assert.assertTrue(actual2 > 0);//if ID is positive - user exists indeed, otherwise it return -1
+        int id1 = APIUtilities.getUserID("ImTheMan@email.com","1111");
+        System.out.println(id1);
     }
+
 
 }

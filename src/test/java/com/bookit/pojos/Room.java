@@ -2,27 +2,21 @@ package com.bookit.pojos;
 
 import java.util.Objects;
 
-/**
- *      {
- *         "id": 112,
- *         "name": "harvard",
- *         "description": "veritas",
- *         "capacity": 6,
- *         "withTV": true,
- *         "withWhiteBoard": false
- *     }
- */
+
 public class Room {
-    private int id;
-    private String name;
-    private String description;
-    private int capacity;
-    private boolean withTV;
-    private boolean withWhiteBoard;
+
+     int id;
+     String name;
+     String description;
+     int capacity;
+     boolean withTV;
+     boolean withWhiteBoard;
+
 
     public Room(){
 
     }
+
 
     public Room(String name, String description, int capacity, boolean withTV, boolean withWhiteBoard) {
         this.name = name;
@@ -109,4 +103,5 @@ public class Room {
                 ", withWhiteBoard=" + withWhiteBoard +
                 '}';
     }
+
 }

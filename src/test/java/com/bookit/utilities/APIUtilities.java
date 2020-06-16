@@ -23,7 +23,8 @@ public class APIUtilities {
     /**
      * This method is used to retrieve token from the server.
      * Token bust be attached to the header of every API call
-     *
+     * Toke is encrypted string used as a password
+     * token is issued by server
      * @return token
      */
     public static String getToken() {

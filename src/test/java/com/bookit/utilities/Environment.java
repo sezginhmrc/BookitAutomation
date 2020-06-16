@@ -17,6 +17,7 @@ public class Environment {
     // all environments are same but different content.
     // for exampe Url is url in every envoirmnet but value is different.
     // and all values will be provided when this class being called.
+
     public static final String URL;
     public static final String DB_USERNAME;
     public static final String DB_PASSWORD;
@@ -32,6 +33,10 @@ public class Environment {
     static {
         Properties properties = null;
         String environment = ConfigurationReader.getProperty("environment");
+        // environment provided in configuration.properties
+        // based on that environmnet it will get Properties from environment resources
+        // it will load and initilaze contats like below.
+
         try {
             //https://docs.oracle.com/javase/tutorial/java/data/numberformat.html
             String path = System.getProperty("user.dir") + String.format("/src/test/resources/environment/%s.properties", environment);

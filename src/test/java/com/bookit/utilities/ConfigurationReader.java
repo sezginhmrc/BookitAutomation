@@ -6,6 +6,8 @@ import java.util.Properties;
 
 public class ConfigurationReader {
     // this is our properties reader
+    // private proprties and static block
+    // whenever we call this method we use getter method to get data based on given key (proprties file is key value pair)
 
     private static Properties configFile;
 

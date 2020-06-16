@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
 
+
     @FindBy(linkText = "my")
     protected WebElement my ;
 
@@ -42,10 +43,8 @@ public abstract class BasePage {
             self.click();
             //   actions.moveToElement(my).pause(2000).click(self).build().perform();
 
-        }else
+        }  else
             navBarToggle.click();
             self.click();
-
-
     }
 }

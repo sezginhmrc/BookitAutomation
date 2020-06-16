@@ -124,6 +124,7 @@ public class BrowserUtilities {
             if(Driver.getDriver().getTitle().equals(title)){
                 break;
             }
+
         }
     }
 }
