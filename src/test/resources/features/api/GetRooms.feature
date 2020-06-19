@@ -1,4 +1,4 @@
-@api @rooms @smoke
+@api @rooms @regression
 Feature: Rooms
 
   @verify_room_counts
